@@ -19,13 +19,37 @@ class Tree
   # Time Complexity: 
   # Space Complexity: 
   def add(key, value)
-    raise NotImplementedError
+    new_node = TreeNode.new(key, value)
+
+    if @root == nil
+      @root = new_node
+    end
+
+    if new_node.key <= @root.key
+      @root.left = new_node
+    else
+      @root.right = new_node
+    end
+    return
   end
 
   # Time Complexity: 
   # Space Complexity: 
   def find(key)
-    raise NotImplementedError
+    current = @root
+
+    while (current != nil)
+      if current.key == key
+        return current.value
+      end
+
+      if key < current.key
+        current = current.left
+      else
+        current = current.right
+      end
+    end
+    return
   end
 
   # Time Complexity: 
