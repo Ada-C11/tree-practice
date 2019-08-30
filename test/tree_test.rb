@@ -1,5 +1,6 @@
+require 'minitest/autorun'
+require 'minitest/skip_dsl'
 require_relative 'test_helper'
-
 
 Minitest::Reporters.use! Minitest::Reporters::SpecReporter.new
 
@@ -31,7 +32,7 @@ describe Tree do
     expect(tree.find(50)).must_be_nil
   end
 
-  describe "inorder" do
+  xdescribe "inorder" do
     it "will give an empty array for an empty tree" do
       expect(tree.inorder).must_equal []
     end
@@ -45,7 +46,7 @@ describe Tree do
   end
 
 
-  describe "preorder" do
+  xdescribe "preorder" do
     it "will give an empty array for an empty tree" do
       expect(tree.preorder).must_equal []
     end
@@ -57,7 +58,7 @@ describe Tree do
     end
   end
 
-  describe "postorder" do
+  xdescribe "postorder" do
     it "will give an empty array for an empty tree" do
       expect(tree.postorder).must_equal []
     end
@@ -69,7 +70,7 @@ describe Tree do
     end
   end
 
-  describe "breadth first search" do
+  xdescribe "breadth first search" do
     it "will give an empty array for an empty tree" do
       expect(tree.bfs).must_equal []
     end

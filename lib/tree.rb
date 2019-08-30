@@ -10,8 +10,6 @@ class TreeNode
    end
 end
 
-# test github login
-
 class Tree
   attr_reader :root
   def initialize
@@ -21,13 +19,29 @@ class Tree
   # Time Complexity:
   # Space Complexity:
   def add(key, value)
-    raise NotImplementedError
+    if !@root
+      new_node = TreeNode.new(key, value)
+      @root = new_node
+      return
+    end
+
+    current = @root
+    new_node = TreeNode.new(key, value)
+    new_node.key <= current.key ? current.left = new_node : current.right = new_node
+    
   end
 
-  # Time Complexity:
+  # Time Complexity: 
   # Space Complexity:
   def find(key)
-    raise NotImplementedError
+    return nil if !@root
+    current = @root
+
+    until current == nil
+      return current.value if key == current.key
+      key < current.key ? current = current.left : current = current.right
+    end
+
   end
 
   # Time Complexity:
