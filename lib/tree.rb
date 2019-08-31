@@ -16,8 +16,8 @@ class Tree
     @root = nil
   end
 
-  # Time Complexity:
-  # Space Complexity:
+  # Time Complexity: O(1)
+  # Space Complexity: O(1)
   def add(key, value)
     if !@root
       new_node = TreeNode.new(key, value)
@@ -31,8 +31,8 @@ class Tree
     
   end
 
-  # Time Complexity: 
-  # Space Complexity:
+  # Time Complexity: O(logn) where n is the length of the array
+  # Space Complexity: O(1)
   def find(key)
     return nil if !@root
     current = @root
@@ -47,7 +47,24 @@ class Tree
   # Time Complexity:
   # Space Complexity:
   def inorder
-    raise NotImplementedError
+    @output = []
+    current = @root
+
+    return @output if !@root
+
+    puts "@@@@@@"
+
+    def analyze(current)
+      puts 'in analyze'
+      analyze(current.left) if current.left
+      @output << {:key => current.key, :value => current.value}
+      analyze(current.right) if current.right
+    end
+    # 
+    analyze(current)
+    puts "output: #{@output}"
+
+    return @output
   end
 
   # Time Complexity:

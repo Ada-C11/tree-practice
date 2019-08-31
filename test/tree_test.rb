@@ -11,6 +11,7 @@ describe Tree do
     tree.add(5, "Peter")
     tree.add(3, "Paul")
     tree.add(1, "Mary")
+    # tree.add(4, "Elle")
     tree.add(10, "Karla")
     tree.add(15, "Ada")
     tree.add(25, "Kari")
@@ -32,7 +33,7 @@ describe Tree do
     expect(tree.find(50)).must_be_nil
   end
 
-  xdescribe "inorder" do
+  describe "inorder" do
     it "will give an empty array for an empty tree" do
       expect(tree.inorder).must_equal []
     end
