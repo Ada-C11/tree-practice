@@ -18,8 +18,8 @@ class Tree
     @root = nil
   end
 
-  # Time Complexity: 
-  # Space Complexity: 
+  # Time Complexity: O(n) because in the worst case you have to hit every node in the tree
+  # Space Complexity: O(1)
   def add(key, value)
     new_node = TreeNode.new(key, value)
     if @root.nil?
@@ -44,8 +44,8 @@ class Tree
 
 
 
-  # Time Complexity: 
-  # Space Complexity: 
+  # Time Complexity: O(n) because in a worst case you have to hit every node in the tree
+  # Space Complexity: O(1)
   def find(key)
     return nil if @root.nil?
     root = @root
@@ -66,8 +66,8 @@ class Tree
   end
 
 
-  # Time Complexity: 
-  # Space Complexity: 
+  # Time Complexity: O(n) because you have to hit every node in the tree
+  # Space Complexity: O(n), where n is the length of the inorder array
   def inorder
     node = @root
     return [] if (node.nil?)
@@ -90,8 +90,8 @@ class Tree
     inorder_helper(node.right, array)
   end
 
-  # Time Complexity: 
-  # Space Complexity: 
+  # Time Complexity: O(n) because you have to hit every node in the tree
+  # Space Complexity: O(n), where n is the length of the preorder_array
   def preorder
   #root, left, right
     node = @root
@@ -113,8 +113,8 @@ class Tree
       preorder_helper(node.right, array)
    end
 
-  # Time Complexity: 
-  # Space Complexity:
+  # Time Complexity: O(n) because you have to hit every node in the tree
+  # Space Complexity: O(n), where n is the length of the postorder array
   # left, right, root
   def postorder
     node = @root
@@ -138,8 +138,8 @@ class Tree
 
      end
 
-  # Time Complexity: 
-  # Space Complexity: 
+  # Time Complexity: O(n) because you have to hit every node in the tree
+  # Space Complexity: O(1)
   def height
     return 0 if @root.nil?
     node = @root
