@@ -25,17 +25,17 @@ class Tree
     if !@root
       @root = new_node
     else
-      if current.key <= key
+      if key <= current.key
         if !current.left
           current.left = new_node
         else
-          self.add(key, value, current.left)
+          add(key, value, current.left)
         end
       else
         if !current.right
           current.right = new_node
         else
-          self.add(key, value, current.right)
+          add(key, value, current.right)
         end
       end
     end
@@ -48,10 +48,10 @@ class Tree
       return nil
     elsif current.key == key
       return current.value
-    elsif current.key <= key
-      self.find(key, current.left)
+    elsif key <= current.key
+      find(key, current.left)
     else
-      self.find(key, current.right)
+      find(key, current.right)
     end
   end
 
