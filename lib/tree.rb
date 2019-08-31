@@ -57,33 +57,57 @@ class Tree
 
   # Time Complexity:
   # Space Complexity:
-  def inorder
-    raise NotImplementedError
+  def inorder(current = @root, array = [])
+    if !current
+      return array
+    else
+      inorder(current.left, array)
+      array << { key: current.key, value: current.value }
+      inorder(current.right, array)
+    end
   end
 
   # Time Complexity:
   # Space Complexity:
-  def preorder
-    raise NotImplementedError
+  def preorder(current = @root, array = [])
+    if !current
+      return array
+    else
+      array << { key: current.key, value: current.value }
+      preorder(current.left, array)
+      preorder(current.right, array)
+    end
   end
 
   # Time Complexity:
   # Space Complexity:
-  def postorder
-    raise NotImplementedError
+  def postorder(current = @root, array = [])
+    if !current
+      return array
+    else
+      postorder(current.left, array)
+      postorder(current.right, array)
+      array << { key: current.key, value: current.value }
+    end
   end
 
   # Time Complexity:
   # Space Complexity:
-  def height
-    raise NotImplementedError
+  def height(current = @root)
+    if !current
+      return 0
+    else
+      left_height = height(current.left)
+      right_height = height(current.right)
+
+      return (left_height > right_height ? left_height : right_height) + 1
+    end
   end
 
   # Optional Method
   # Time Complexity:
   # Space Complexity:
   def bfs
-    raise NotImplementedError
   end
 
   # Useful for printing
