@@ -54,6 +54,14 @@ class TreeNode
     right.postorder(tree) unless !right
     tree << {key: @key, value: @value}
   end
+
+  def height(node)
+    return 0 if !node
+    left_height = height(node.left)
+    right_height = height(node.right)
+    max_height = left_height >= right_height ? left_height : right_height
+    return max_height + 1
+  end
 end
 
 class Tree
@@ -110,9 +118,8 @@ class Tree
   # Time Complexity: O(n)
   # Space Complexity: O(n)
   def height
-
-    #everytime you go to a branch, add 1 to count that starts at 1
-    # do both sides, if one is greater return that one
+    return 0 if !@root
+    return @root.height(@root)
   end
 
   # Optional Method
