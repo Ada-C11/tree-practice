@@ -11,9 +11,9 @@ describe Tree do
     tree.add(5, "Peter")
     tree.add(3, "Paul")
     tree.add(1, "Mary")
-    tree.add(4, "Elle")
+    # tree.add(4, "Elle")
     tree.add(10, "Karla")
-    tree.add(9, "Brad")
+    # tree.add(9, "Brad")
     tree.add(15, "Ada")
     tree.add(25, "Kari")
     tree

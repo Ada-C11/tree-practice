@@ -27,7 +27,41 @@ class Tree
 
     current = @root
     new_node = TreeNode.new(key, value)
-    new_node.key <= current.key ? current.left = new_node : current.right = new_node
+    done = false
+
+    until done
+      node_left_of_curr = current.left
+      node_right_of_curr = current.right
+      if new_node.key <= current.key # GO LEFT
+        if !current.left
+          current.left = new_node
+          done = true
+          puts "current #{current.key}"
+        elsif new_node.key > node_left_of_curr.key
+          new_node.left = node_left_of_curr
+          current.left = new_node
+          done = true
+          puts "current #{current.key}"
+        else
+          current = current.left
+          puts "current #{current.key}"
+        end
+      else # new_node.value > current.value # GO RIGHT
+        if !current.right
+          current.right = new_node
+          done = true
+          puts "current #{current.key}"
+        elsif new_node.key < node_right_of_curr.key
+          new_node.right = node_right_of_curr
+          current.right = new_node
+          done = true
+          puts "current #{current.key}"
+        else
+        current = current.right
+        puts "current #{current.key}"
+        end
+      end
+    end
 
   end
 
@@ -53,15 +87,16 @@ class Tree
     return @output if !@root
 
     def analyze(current)
-      puts 'in analyze'
+      # puts 'in analyze'
       analyze(current.left) if current.left
-
-      if current.left == @output.last && @output.last != current.right
-        analyze(current)
-      end
 
       @output << {:key => current.key, :value => current.value}
       analyze(current.right) if current.right
+
+      # if !current.left && !current.right
+      #   return
+      # end
+
     end
     #
     analyze(current)
