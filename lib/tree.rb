@@ -28,10 +28,10 @@ class Tree
     current = @root
     new_node = TreeNode.new(key, value)
     new_node.key <= current.key ? current.left = new_node : current.right = new_node
-    
+
   end
 
-  # Time Complexity: O(logn) where n is the length of the array
+  # Time Complexity: O(logn) where n is the length of the array if the tree is balanced. O(n) if not.
   # Space Complexity: O(1)
   def find(key)
     return nil if !@root
@@ -52,15 +52,18 @@ class Tree
 
     return @output if !@root
 
-    puts "@@@@@@"
-
     def analyze(current)
       puts 'in analyze'
       analyze(current.left) if current.left
+
+      if current.left == @output.last && @output.last != current.right
+        analyze(current)
+      end
+
       @output << {:key => current.key, :value => current.value}
       analyze(current.right) if current.right
     end
-    # 
+    #
     analyze(current)
     puts "output: #{@output}"
 
