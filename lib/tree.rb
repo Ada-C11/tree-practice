@@ -17,55 +17,72 @@ class Tree
     @root = nil
   end
 
-  # Time Complexity:
-  # Space Complexity:
+  # Time Complexity: O(n) where n is the height of the tree
+  #                   or O(log n) if the tree is balanced
+  # Space Complexity: O(1)
   def add(key, value)
     new_tree_node = TreeNode.new(key, value)
 
-    # if @root.nil?
+    if @root.nil?
       @root = new_tree_node
-    # else
-    #   current = @root
-
-    #   while !current.left.value.nil? || !current.right.value.nil?
-
-    #   end
-    # end 
+    else
+      current = @root
+      while current
+        if new_tree_node.key <= current.key
+          if !current.left
+            current.left = new_tree_node
+            return
+          else
+            current = current.left
+          end
+        else
+          if !current.right
+            current.right = new_tree_node
+            return
+          else
+            current = current.right
+          end
+        end
+      end
+    end
   end
 
-  # Time Complexity:
-  # Space Complexity:
+  # Time Complexity: O(log n) if tree is balanced, n is size of tree
+  #                   O(n) in worst case where n is also size of tree
+  # Space Complexity: O(1)
   def find(key)
     return nil if @root.nil?
 
     current = @root
-    until current.key == key
+    while current
       if key > current.key
         current = current.right
-      else 
+      elsif key < current.key
         current = current.left
-      end 
-    end 
+      else
+        return current.value
+      end
+    end
 
-    return current.value
+    return nil
   end
 
   # Time Complexity:
   # Space Complexity:
   def inorder
-    raise NotImplementedError
+    return [] if @root.nil?
   end
 
   # Time Complexity:
   # Space Complexity:
   def preorder
-    raise NotImplementedError
+    return [] if @root.nil?
   end
 
   # Time Complexity:
   # Space Complexity:
   def postorder
-    raise NotImplementedError
+    return [] if @root.nil?
   end
 
   # Time Complexity:
