@@ -90,7 +90,21 @@ class Tree
   # Time Complexity:
   # Space Complexity:
   def preorder
+    array = []
     return [] if @root.nil?
+    current = @root
+
+    return preorder_helper(current, array)
+  end
+
+  def preorder_helper(current, array)
+    if !current
+      return array
+    else
+      array << {:key => current.key, :value => current.value}
+      preorder_helper(current.left, array)
+      preorder_helper(current.right, array)
+    end
   end
 
   # Time Complexity:
