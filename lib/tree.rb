@@ -17,8 +17,9 @@ class Tree
     @root = nil
   end
 
-  # Time Complexity:
-  # Space Complexity:
+  # Time Complexity: O(log n) if the tree is balanced, O(n) if the tree is unbalanced
+  #                 - where n is equal to the number of TreeNodes in the tree
+  # Space Complexity: O(1) - constant
   def add(key, value, current = @root)
     new_node = TreeNode.new(key, value)
 
@@ -41,8 +42,9 @@ class Tree
     end
   end
 
-  # Time Complexity:
-  # Space Complexity:
+  # Time Complexity: O(log n) if the tree is balance, O(n) is the tree is unbalanced
+  #                 - where n is equal to the number of TreeNodes in the tree
+  # Space Complexity: O(1) - constant
   def find(key, current = @root)
     if !@root
       return nil
@@ -55,8 +57,8 @@ class Tree
     end
   end
 
-  # Time Complexity:
-  # Space Complexity:
+  # Time Complexity: O(n) - where n is equal to the number of TreeNodes in the tree
+  # Space Complexity: O(n) where n is equal to the number of TreeNodes in the tree
   def inorder(current = @root, array = [])
     if !current
       return array
@@ -67,8 +69,8 @@ class Tree
     end
   end
 
-  # Time Complexity:
-  # Space Complexity:
+  # Time Complexity: O(n) - where n is equal to the number of TreeNodes in the tree
+  # Space Complexity: O(n) where n is equal to the number of TreeNodes in the tree
   def preorder(current = @root, array = [])
     if !current
       return array
@@ -79,8 +81,8 @@ class Tree
     end
   end
 
-  # Time Complexity:
-  # Space Complexity:
+  # Time Complexity: O(n) - where n is equal to the number of TreeNodes in the tree
+  # Space Complexity: O(n) where n is equal to the number of TreeNodes in the tree
   def postorder(current = @root, array = [])
     if !current
       return array
@@ -91,8 +93,8 @@ class Tree
     end
   end
 
-  # Time Complexity:
-  # Space Complexity:
+  # Time Complexity: O(n) - where n is equal to the number of TreeNodes in the tree
+  # Space Complexity: O(1) - constant
   def height(current = @root)
     if !current
       return 0
