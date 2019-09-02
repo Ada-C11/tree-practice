@@ -23,22 +23,14 @@ class Tree
   def add(key, value, current = @root)
     new_node = TreeNode.new(key, value)
 
-    if !@root
-      @root = new_node
-    else
+    if @root
       if key <= current.key
-        if !current.left
-          current.left = new_node
-        else
-          add(key, value, current.left)
-        end
+        current.left ? add(key, value, current.left) : current.left = new_node
       else
-        if !current.right
-          current.right = new_node
-        else
-          add(key, value, current.right)
-        end
+        current.right ? add(key, value, current.right) : current.right = new_node
       end
+    else
+      @root = new_node
     end
   end
 
@@ -46,63 +38,65 @@ class Tree
   #                 - where n is equal to the number of TreeNodes in the tree
   # Space Complexity: O(1) - constant
   def find(key, current = @root)
-    if !@root
-      return nil
-    elsif current.key == key
-      return current.value
-    elsif key <= current.key
-      find(key, current.left)
+    if current
+      if current.key == key
+        return current.value
+      elsif key <= current.key
+        find(key, current.left)
+      elsif key > current.key
+        find(key, current.right)
+      end
     else
-      find(key, current.right)
+      return
     end
   end
 
   # Time Complexity: O(n) - where n is equal to the number of TreeNodes in the tree
   # Space Complexity: O(n) where n is equal to the number of TreeNodes in the tree
   def inorder(current = @root, array = [])
-    if !current
-      return array
-    else
+    if current
       inorder(current.left, array)
       array << { key: current.key, value: current.value }
       inorder(current.right, array)
+    else
+      return array
     end
   end
 
   # Time Complexity: O(n) - where n is equal to the number of TreeNodes in the tree
   # Space Complexity: O(n) where n is equal to the number of TreeNodes in the tree
   def preorder(current = @root, array = [])
-    if !current
-      return array
-    else
+    if current
       array << { key: current.key, value: current.value }
       preorder(current.left, array)
       preorder(current.right, array)
+    else
+      return array
     end
   end
 
   # Time Complexity: O(n) - where n is equal to the number of TreeNodes in the tree
   # Space Complexity: O(n) where n is equal to the number of TreeNodes in the tree
   def postorder(current = @root, array = [])
-    if !current
-      return array
-    else
+    if current
       postorder(current.left, array)
       postorder(current.right, array)
       array << { key: current.key, value: current.value }
+    else
+      return array
     end
   end
 
   # Time Complexity: O(n) - where n is equal to the number of TreeNodes in the tree
   # Space Complexity: O(1) - constant
   def height(current = @root)
-    if !current
-      return 0
-    else
+    if current
       left_height = height(current.left)
       right_height = height(current.right)
 
       return (left_height > right_height ? left_height : right_height) + 1
+    else
+      return 0
     end
   end
 
