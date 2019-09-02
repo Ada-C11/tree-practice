@@ -70,7 +70,21 @@ class Tree
   # Time Complexity:
   # Space Complexity:
   def inorder
+    array = []
     return [] if @root.nil?
+    current = @root
+
+    return inorder_helper(current, array)
+  end
+
+  def inorder_helper(current, array)
+    if !current
+      return array
+    else
+      inorder_helper(current.left, array)
+      array << {:key => current.key, :value => current.value}
+      inorder_helper(current.right, array)
+    end
   end
 
   # Time Complexity:
