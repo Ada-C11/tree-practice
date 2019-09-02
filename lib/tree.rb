@@ -110,7 +110,21 @@ class Tree
   # Time Complexity:
   # Space Complexity:
   def postorder
+    array = []
     return [] if @root.nil?
+    current = @root
+
+    return postorder_helper(current, array)
+  end
+
+  def postorder_helper(current, array)
+    if !current
+      return array
+    else
+      postorder_helper(current.left, array)
+      postorder_helper(current.right, array)
+      array << {:key => current.key, :value => current.value}
+    end
   end
 
   # Time Complexity:
