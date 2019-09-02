@@ -68,27 +68,53 @@ class Tree
 
     return @output if !@root
 
-    def analyze(current)
-      analyze(current.left) if current.left
+    def analyzeInorder(current)
+      analyzeInorder(current.left) if current.left
       @output << {:key => current.key, :value => current.value}
-      analyze(current.right) if current.right
+      analyzeInorder(current.right) if current.right
     end
     
-    analyze(current)
+    analyzeInorder(current)
   
     return @output
   end
 
-  # Time Complexity:
-  # Space Complexity:
+  # Time Complexity: O(n-squared) 
+  # Space Complexity: O(n) where n is the height of the recursion stack
   def preorder
-    raise NotImplementedError
+    @output = []
+    current = @root
+
+    return @output if !@root
+
+    def analyzePreorder(current)
+      @output << {:key => current.key, :value => current.value}
+      analyzePreorder(current.left) if current.left
+      analyzePreorder(current.right) if current.right
+    end
+    
+    analyzePreorder(current)
+  
+    return @output
   end
 
-  # Time Complexity:
-  # Space Complexity:
+  # Time Complexity: O(n-squared) 
+  # Space Complexity: O(n) where n is the height of the recursion stack
   def postorder
-    raise NotImplementedError
+    @output = []
+    current = @root
+
+    return @output if !@root
+
+    def analyzePostorder(current)
+      analyzePostorder(current.left) if current.left
+      analyzePostorder(current.right) if current.right
+      @output << {:key => current.key, :value => current.value}
+    end
+    
+    analyzePostorder(current)
+  
+    return @output
   end
 
   # Time Complexity:
