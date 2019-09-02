@@ -80,7 +80,7 @@ class Tree
   end
 
   # Time Complexity: O(n), where n is the number of nodes in the tree
-  # Space Complexity: O(m), where m is the height of the tree
+  # Space Complexity: O(n), where n is the number of nodes in the tree
   def inorder
     node_array = []
     if !@root
@@ -105,7 +105,7 @@ class Tree
   end
 
   # Time Complexity: O(n), where n is the number of nodes in the tree
-  # Space Complexity: O(m), where m is the height of the tree
+  # Space Complexity: O(n), where n is the number of nodes in the tree
   def preorder
     node_array = []
     if !@root
@@ -130,7 +130,7 @@ class Tree
   end
 
   # Time Complexity: O(n), where n is the number of nodes in the tree
-  # Space Complexity: O(m), where m is the height of the tree
+  # Space Complexity: O(n), where n is the number of nodes in the tree
   def postorder
     node_array = []
     if !@root
