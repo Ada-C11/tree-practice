@@ -38,6 +38,7 @@ class Tree
         current = current.right
       end
     end
+
     current.key >= key ? current.left = new_node : current.right = new_node
   end
 
@@ -58,26 +59,27 @@ class Tree
     return nil
   end
 
-  # Time Complexity:
-  # Space Complexity:
+  # Time Complexity: O(n) where n is the number of nodes in the tree
+  # Space Complexity: O(n) where n is the number of nodes in the tree
   def inorder
-    raise NotImplementedError
+    tree = []
+    current = @root
   end
 
-  # Time Complexity:
-  # Space Complexity:
+  # Time Complexity: O(n) where n is the number of nodes in the tree
+  # Space Complexity: O(n) where n is the number of nodes in the tree
   def preorder
     raise NotImplementedError
   end
 
-  # Time Complexity:
-  # Space Complexity:
+  # Time Complexity: O(n) where n is the number of nodes in the tree
+  # Space Complexity: O(n) where n is the number of nodes in the tree xs4
   def postorder
     raise NotImplementedError
   end
 
-  # Time Complexity:
-  # Space Complexity:
+  # Time Complexity: O(n) where n is the number of nodes in the tree
+  # Space Complexity: O(1)
   def height
     raise NotImplementedError
   end
