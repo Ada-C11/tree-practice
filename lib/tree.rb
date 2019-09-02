@@ -67,77 +67,93 @@ class Tree
     return nil
   end
 
-  # Time Complexity:
-  # Space Complexity:
+  # Time Complexity: O(n) where n is the height of the tree
+  # Space Complexity: O(n) where n is the height of the tree
+  #                   potentially O(n^2) with the arrays?
   def inorder
     array = []
     return [] if @root.nil?
     current = @root
 
-    return inorder_helper(current, array)
+    return inorder_recursive(current, array)
   end
 
-  def inorder_helper(current, array)
+  def inorder_recursive(current, array)
     if !current
       return array
     else
-      inorder_helper(current.left, array)
+      inorder_recursive(current.left, array)
       array << {:key => current.key, :value => current.value}
-      inorder_helper(current.right, array)
+      inorder_recursive(current.right, array)
     end
   end
 
-  # Time Complexity:
-  # Space Complexity:
+  # Time Complexity: O(n) where n is the height of the tree
+  # Space Complexity: O(n) where n is the height of the tree
   def preorder
     array = []
     return [] if @root.nil?
     current = @root
 
-    return preorder_helper(current, array)
+    return preorder_recursive(current, array)
   end
 
-  def preorder_helper(current, array)
+  def preorder_recursive(current, array)
     if !current
       return array
     else
       array << {:key => current.key, :value => current.value}
-      preorder_helper(current.left, array)
-      preorder_helper(current.right, array)
+      preorder_recursive(current.left, array)
+      preorder_recursive(current.right, array)
     end
   end
 
-  # Time Complexity:
-  # Space Complexity:
+  # Time Complexity: O(n) where n is the height of the tree
+  # Space Complexity: O(n) where n is the height of the tree
   def postorder
     array = []
     return [] if @root.nil?
     current = @root
 
-    return postorder_helper(current, array)
+    return postorder_recursive(current, array)
   end
 
-  def postorder_helper(current, array)
+  def postorder_recursive(current, array)
     if !current
       return array
     else
-      postorder_helper(current.left, array)
-      postorder_helper(current.right, array)
+      postorder_recursive(current.left, array)
+      postorder_recursive(current.right, array)
       array << {:key => current.key, :value => current.value}
     end
   end
 
-  # Time Complexity:
-  # Space Complexity:
+  # Time Complexity: O(n) where n is the size of the tree
+  # Space Complexity: O(n)
   def height
-    raise NotImplementedError
+    return 0 if @root.nil?
+    current = @root
+    height_recursive(current)
+  end
+
+  def height_recursive(current)
+    return 0 if current.nil?
+
+    left_side = height_recursive(current.left)
+    right_side = height_recursive(current.right)
+
+    if left_side < right_side
+      return (right_side + 1)
+    else
+      return (left_side + 1)
+    end
   end
 
   # Optional Method
   # Time Complexity:
   # Space Complexity:
   def bfs
-    raise NotImplementedError
+    return [] if @root.nil?
   end
 
   # Useful for printing
