@@ -18,91 +18,78 @@ class Tree
 
   # Time Complexity: 
   # Space Complexity: 
-  def add(key, value)
+  def add(key, value, current = @root)
     new_node = TreeNode.new(key, value)
 
-    if @root == nil
+    if !@root
       @root = new_node
-    end
-
-    if new_node.key <= @root.key
-      @root.left = new_node
     else
-      @root.right = new_node
+      if key <= current.key
+        if !current.left
+          current.left = new_node
+        else
+          add(key, value, current.left)
+        end
+      else
+        if !current.right
+          current.right = new_node
+        else
+          add(key, value, current.right)
+        end
+      end
     end
-    return
   end
 
   # Time Complexity:
   # Space Complexity:
-  def find(key)
-    current = @root
-
-    if current == nil
+  def find(key, current = @root)
+    if !@root
       return nil
+    elsif current.key == key
+      return current.value
+    elsif key <= current.key
+      find(key, current.left)
+    else
+      find(key, current.right)
     end
-
-    while (current != nil)
-      if current.key == key
-        return current.value
-      end
-
-      if key < current.key
-        current = current.left
-      else
-        current = current.right
-      end
-    end
-    return
   end
 
   # Time Complexity: 
   # Space Complexity: 
-  def inorder
-    current = @root
-    array = []
-
-    if current == nil
-      return
-    end
-    
-    if array.empty?
-      return []
-    end
-
-    while (current != nil)
-      if (current.left == nil)
-        pre = current.right
-      else
-        array.push({:key => current.left.key, :value => current.left.value})
-      end
-
-      if (current.right == nil)
-        pre = current.right
-      else
-        array.push({:key => current.right.key, :value => current.right.value})
-      end
+  def inorder(current = @root, array = [])
+    if !current
+      return array
+    else
+      inorder(current.left, array)
+      array << { key: current.key, value: current.value }
+      inorder(current.right, array)
     end
   end
 
-  # def inorder_helper(current)
-  #   if current == nil
-  #     return
-  #   end
 
-
-  # end
 
   # Time Complexity: 
   # Space Complexity: 
-  def preorder
-    raise NotImplementedError
+  def preorder(current = @root, array = [])
+    if !current
+      return array
+    else
+      array << { key: current.key, value: current.value }
+      preorder(current.left, array)
+      preorder(current.right, array)
+    end
   end
 
   # Time Complexity: 
   # Space Complexity: 
-  def postorder
-    raise NotImplementedError
+  def postorder(current = @root, array = [])
+    if !current
+      return array
+    else
+      postorder(current.left, array)
+      postorder(current.right, array)
+      array << { key: current.key, value: current.value }
+    end
   end
 
   # Time Complexity: 
@@ -122,4 +109,4 @@ class Tree
   def to_s
     return "#{self.inorder}"
   end
-
+end
