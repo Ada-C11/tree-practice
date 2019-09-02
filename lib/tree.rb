@@ -16,7 +16,7 @@ class Tree
     @root = nil
   end
 
-  # Time Complexity: O(1)
+  # Time Complexity: O(logn) if the tree is balanced (best case), O(n) if tree is unbalanced (worst case)
   # Space Complexity: O(1)
   def add(key, value)
     if !@root
@@ -27,42 +27,24 @@ class Tree
 
     current = @root
     new_node = TreeNode.new(key, value)
-    done = false
 
-    until done
-      node_left_of_curr = current.left
-      node_right_of_curr = current.right
+    until !current
       if new_node.key <= current.key # GO LEFT
         if !current.left
           current.left = new_node
-          done = true
-          puts "current #{current.key}"
-        elsif new_node.key > node_left_of_curr.key
-          new_node.left = node_left_of_curr
-          current.left = new_node
-          done = true
-          puts "current #{current.key}"
+          return
         else
           current = current.left
-          puts "current #{current.key}"
         end
       else # new_node.value > current.value # GO RIGHT
         if !current.right
           current.right = new_node
-          done = true
-          puts "current #{current.key}"
-        elsif new_node.key < node_right_of_curr.key
-          new_node.right = node_right_of_curr
-          current.right = new_node
-          done = true
-          puts "current #{current.key}"
+          return
         else
         current = current.right
-        puts "current #{current.key}"
         end
       end
     end
-
   end
 
   # Time Complexity: O(logn) where n is the length of the array if the tree is balanced. O(n) if not.
@@ -78,8 +60,8 @@ class Tree
 
   end
 
-  # Time Complexity:
-  # Space Complexity:
+  # Time Complexity: O(n-squared) 
+  # Space Complexity: O(n) where n is the height of the recursion stack
   def inorder
     @output = []
     current = @root
@@ -87,21 +69,13 @@ class Tree
     return @output if !@root
 
     def analyze(current)
-      # puts 'in analyze'
       analyze(current.left) if current.left
-
       @output << {:key => current.key, :value => current.value}
       analyze(current.right) if current.right
-
-      # if !current.left && !current.right
-      #   return
-      # end
-
     end
-    #
+    
     analyze(current)
-    puts "output: #{@output}"
-
+  
     return @output
   end
 
