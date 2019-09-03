@@ -117,10 +117,21 @@ class Tree
     return @output
   end
 
-  # Time Complexity:
-  # Space Complexity:
+  # Time Complexity: O(log n) if tree is balanced, O(n) if unbalanced
+  # Space Complexity: O(1)
   def height
-    raise NotImplementedError
+    return 0 if !@root
+
+    def findMaxHeight(node)
+      return 0 if !node
+
+      height_left = findMaxHeight(node.left)
+      height_right = findMaxHeight(node.right)
+      
+      return height_left > height_right ? (height_left + 1) : (height_right + 1)
+    end
+    
+    findMaxHeight(@root)
   end
 
   # Optional Method

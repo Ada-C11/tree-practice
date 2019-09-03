@@ -72,7 +72,17 @@ describe Tree do
     end
   end
 
-  xdescribe "breadth first search" do
+  describe "height" do
+    it "returns 0 for an empty tree" do
+      expect(tree.height).must_equal 0
+    end
+
+    it "returns correct height of tree" do
+      expect(tree_with_nodes.height).must_equal 4
+    end
+  end
+
+  xdescribe "breadth first search" do # writing this method is optional
     it "will give an empty array for an empty tree" do
       expect(tree.bfs).must_equal []
     end
