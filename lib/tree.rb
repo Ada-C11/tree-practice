@@ -100,8 +100,15 @@ class Tree
 
   # Time Complexity: 
   # Space Complexity: 
-  def height
-    raise NotImplementedError
+  def height(current = @root, array)
+    if current == nil
+      return nil
+    elsif current.left != nil
+        array << { key: current.key, value: current.value }
+      elsif current.right != nil
+        array << { key: current.key, value: current.value }
+      end
+      return array.length + 1
   end
 
   # Optional Method
