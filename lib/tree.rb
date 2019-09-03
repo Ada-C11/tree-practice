@@ -109,8 +109,15 @@ class Tree
 
   # Time Complexity: O(n) where n is the number of nodes in the tree
   # Space Complexity: O(1)
-  def height
-    raise NotImplementedError
+  def height(current = @root, current_height = 0, max_height = 0)
+    return max_height if current == nil
+
+    max_height = current_height if current_height > max_height
+    max_height = height(current.left, current_height += 1, max_height)
+    current_height -= 1
+    max_height = height(current.right, current_height += 1, max_height)
+
+    return max_height
   end
 
   # Optional Method
