@@ -2,59 +2,127 @@ class TreeNode
   attr_reader :key, :value
   attr_accessor :left, :right
 
-   def initialize(key, val)
+  def initialize(key, val)
     @key = key
     @value = val
     @left = nil
     @right = nil
-   end
+  end
 end
 
 class Tree
   attr_reader :root
+
   def initialize
     @root = nil
   end
 
-  # Time Complexity: 
-  # Space Complexity: 
+  # Time Complexity: O(n) is worst case if tree is not balanced where n is the height of the tree
+  # Space Complexity: O(1)
   def add(key, value)
-    raise NotImplementedError
+    new_node = TreeNode.new(key, value)
+
+    if @root == nil
+      @root = new_node
+      return
+    end
+
+    current = @root
+
+    while current != nil
+      if current.key >= key
+        break if current.left == nil
+        current = current.left
+      else
+        break if current.right == nil
+        current = current.right
+      end
+    end
+
+    current.key >= key ? current.left = new_node : current.right = new_node
   end
 
-  # Time Complexity: 
-  # Space Complexity: 
+  # Time Complexity: O(n) is worst case if tree is not balanced where n is the height of the tree
+  # Space Complexity: O(1)
   def find(key)
-    raise NotImplementedError
+    current = @root
+
+    while current != nil
+      if current.key > key
+        current = current.left
+      elsif current.key < key
+        current = current.right
+      else
+        return current.value
+      end
+    end
+    return nil
   end
 
-  # Time Complexity: 
-  # Space Complexity: 
+  # Time Complexity: O(n) where n is the number of nodes in the tree
+  # Space Complexity: O(n) where n is the number of nodes in the tree
   def inorder
-    raise NotImplementedError
+    return inorder_recursion(current = @root, tree = [])
   end
 
-  # Time Complexity: 
-  # Space Complexity: 
+  def inorder_recursion(current, tree)
+    if current != nil
+      inorder_recursion(current.left, tree)
+      tree << { key: current.key, value: current.value }
+      inorder_recursion(current.right, tree)
+    else
+      return tree
+    end
+  end
+
+  # Time Complexity: O(n) where n is the number of nodes in the tree
+  # Space Complexity: O(n) where n is the number of nodes in the tree
   def preorder
-    raise NotImplementedError
+    return preorder_recursion(current = @root, tree = [])
   end
 
-  # Time Complexity: 
-  # Space Complexity: 
+  def preorder_recursion(current, tree)
+    if current != nil
+      tree << { key: current.key, value: current.value }
+      preorder_recursion(current.left, tree)
+      preorder_recursion(current.right, tree)
+    else
+      return tree
+    end
+  end
+
+  # Time Complexity: O(n) where n is the number of nodes in the tree
+  # Space Complexity: O(n) where n is the number of nodes in the tree xs4
   def postorder
-    raise NotImplementedError
+    return postorder_recursion(current = @root, tree = [])
   end
 
-  # Time Complexity: 
-  # Space Complexity: 
-  def height
-    raise NotImplementedError
+  def postorder_recursion(current, tree)
+    if current != nil
+      postorder_recursion(current.left, tree)
+      postorder_recursion(current.right, tree)
+      tree << { key: current.key, value: current.value }
+    else
+      return tree
+    end
+  end
+
+  # Time Complexity: O(n) where n is the number of nodes in the tree
+  # Space Complexity: O(1)
+  def height(current = @root, current_height = 0, max_height = 0)
+    return max_height if current == nil
+
+    max_height = current_height if current_height > max_height
+    max_height = height(current.left, current_height += 1, max_height)
+    current_height -= 1
+    max_height = height(current.right, current_height += 1, max_height)
+
+    return max_height
   end
 
   # Optional Method
-  # Time Complexity: 
-  # Space Complexity: 
+  # Time Complexity:
+  # Space Complexity:
   def bfs
     raise NotImplementedError
   end
