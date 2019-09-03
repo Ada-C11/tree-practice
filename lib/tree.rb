@@ -62,20 +62,49 @@ class Tree
   # Time Complexity: O(n) where n is the number of nodes in the tree
   # Space Complexity: O(n) where n is the number of nodes in the tree
   def inorder
-    tree = []
-    current = @root
+    return inorder_recursion(current = @root, tree = [])
+  end
+
+  def inorder_recursion(current, tree)
+    if current != nil
+      inorder_recursion(current.left, tree)
+      tree << { key: current.key, value: current.value }
+      inorder_recursion(current.right, tree)
+    else
+      return tree
+    end
   end
 
   # Time Complexity: O(n) where n is the number of nodes in the tree
   # Space Complexity: O(n) where n is the number of nodes in the tree
   def preorder
-    raise NotImplementedError
+    return preorder_recursion(current = @root, tree = [])
+  end
+
+  def preorder_recursion(current, tree)
+    if current != nil
+      tree << { key: current.key, value: current.value }
+      preorder_recursion(current.left, tree)
+      preorder_recursion(current.right, tree)
+    else
+      return tree
+    end
   end
 
   # Time Complexity: O(n) where n is the number of nodes in the tree
   # Space Complexity: O(n) where n is the number of nodes in the tree xs4
   def postorder
-    raise NotImplementedError
+    return postorder_recursion(current = @root, tree = [])
+  end
+
+  def postorder_recursion(current, tree)
+    if current != nil
+      postorder_recursion(current.left, tree)
+      postorder_recursion(current.right, tree)
+      tree << { key: current.key, value: current.value }
+    else
+      return tree
+    end
   end
 
   # Time Complexity: O(n) where n is the number of nodes in the tree
