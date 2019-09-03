@@ -16,8 +16,8 @@ class Tree
     @root = nil
   end
 
-  # Time Complexity: 
-  # Space Complexity: 
+  # Time Complexity: O(log n) must divide and conquer based on if new key is > || <
+  # Space Complexity: O(1)
   def add(key, value)
     new_node = TreeNode.new(key, value)
 
@@ -41,8 +41,8 @@ class Tree
     return root
   end
 
-  # Time Complexity: 
-  # Space Complexity: 
+  # Time Complexity: O(log n) - a divide and conquer algorithm
+  # Space Complexity: O(1)
 
   def find(key)
     if @root.nil?
@@ -65,8 +65,8 @@ class Tree
     end
   end
 
-  # Time Complexity: 
-  # Space Complexity: 
+  # Time Complexity: O(n)
+  # Space Complexity: O(n)
   def inorder
     tree_inorder = []
 
@@ -95,8 +95,8 @@ class Tree
     inorder_helper(current_node.right, tree_array)
   end
 
-  # Time Complexity: 
-  # Space Complexity: 
+  # Time Complexity: O(n)
+  # Space Complexity: O(n)
   def preorder
     tree_inorder = []
     if @root.nil?
@@ -124,8 +124,8 @@ class Tree
     preorder_helper(current_node.right, tree_array)
   end
 
-  # Time Complexity: 
-  # Space Complexity: 
+  # Time Complexity: O(n)
+  # Space Complexity: O(n)
   def postorder
     tree_postorder = []
     if @root.nil?
@@ -153,8 +153,8 @@ class Tree
     tree_array << tree_hash
   end
 
-  # Time Complexity: 
-  # Space Complexity: 
+  # Time Complexity: O(n)
+  # Space Complexity: O(1)
   def height
     if @root.nil?
       return 0
