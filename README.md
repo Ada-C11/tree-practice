@@ -5,7 +5,7 @@ This project is due **Monday September 2nd, 2019**
 In this exercise you will implement, in Ruby, several Tree methods.
 
 - `add(value)` - This method adds a value to the Binary Search Tree
-- `find(value)` - This method returns true if the given value is in the tree and false otherwise.
+- `find(value)` - This method returns the corresponding value if the given key is in the tree and nil otherwise.  
 - `inorder` - This method returns an array of all the elements in the tree, in order.
 - `postorder` - This method returns an array of all the elements in a postorder fashion (left, right , root).
 - `preorder` - This method returns an array of all the elements in a preorder fashion (root, left, right).
