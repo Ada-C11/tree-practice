@@ -16,16 +16,43 @@ class Tree
     @root = nil
   end
 
-  # Time Complexity: 
-  # Space Complexity: 
+  # Time Complexity: O(log n) - traverse only half of dataset
+  # Space Complexity: O - just adding a node
   def add(key, value)
-    raise NotImplementedError
+    if @root.nil?
+      new_tree_node = TreeNode.new(key, value)
+      @root = new_tree_node
+      return
+    end
+
+      current_node = @root
+      add_node = TreeNode.new(key, value)
+      if add_node.key <= current_node.key
+        current_node.left = add_node
+      else
+        current_node.right = add_node
+      end
   end
 
   # Time Complexity: 
   # Space Complexity: 
   def find(key)
-    raise NotImplementedError
+    #begin with root node, returns value
+    return unless !@root.nil?
+
+    current_node = @root
+
+    while current_node != nil
+      if key == current_node.key
+       return current_node.value
+      elsif key <= current_node.key
+        current_node = current_node.left
+      else 
+        current_node = current_node.right
+      end
+    end
+
+    return nil
   end
 
   # Time Complexity: 
