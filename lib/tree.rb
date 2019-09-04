@@ -66,22 +66,20 @@ class TreeNode
     tree_array << { key: @key, value: @value }
   end
 
-  def height(tree_height)
-    # left_height = 0
-    # right_heigt = 0
+  def height
+    left_height = 0
+    right_height = 0
+
     # if !left.nil?
-    #   left_height += 1
-    #   # puts "!!!!!!!!!!!!!!  left: #{left_height}"
-    #   left.height(left_height)
-    # end
+    unless left.nil?
+      left_height = left.height + 1
+    end
 
-    # if !right.nil?
-    #   right_height += 1
-    #   # puts "!!!!!!!!!!!!!!  right: #{right_height}"
-    #   right.height(right_height)
-    # end
+    unless right.nil?
+      right_height = right.height + 1
+    end
 
-    # left_height >= right_height ? tree_height = left_height : tree_height = right_height
+    left_height >= right_height ? left_height : right_height
   end
 end
 
@@ -149,16 +147,14 @@ class Tree
     end
   end
 
-  # Time Complexity:
-  # Space Complexity:
+  # Time Complexity: O(n), where n is the number of nodes in the tree
+  # Space Complexity: O(log n) if tree is balanced, O(n) if unbalanced
   def height
-    # tree_height = 0
-    # if root.nil?
-    #   return nil
-    # else
-    #   root.height(tree_height)
-    #   return tree_height
-    # end
+    if root.nil?
+      return nil
+    else
+      return root.height
+    end
   end
 
   # Optional Method
