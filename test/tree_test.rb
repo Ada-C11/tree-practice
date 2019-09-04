@@ -68,12 +68,14 @@ describe Tree do
 
   describe "height" do
     it "will return 0 for a tree with 1 node" do
+      tree
       tree.add(5, "Peter")
 
       expect(tree.height).must_equal 0
     end
 
     it "will return the height of the tree" do
+      tree
       tree.add(10, "Karla")
       tree.add(5, "Peter")
       tree.add(15, "Ada")
