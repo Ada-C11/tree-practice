@@ -1,10 +1,9 @@
-require_relative 'test_helper'
-
+require_relative "test_helper"
 
 Minitest::Reporters.use! Minitest::Reporters::SpecReporter.new
 
 describe Tree do
-  let (:tree) {Tree.new}
+  let (:tree) { Tree.new }
 
   let (:tree_with_nodes) {
     tree.add(5, "Peter")
@@ -37,13 +36,11 @@ describe Tree do
     end
 
     it "will return the tree in order" do
-
-      expect(tree_with_nodes.inorder).must_equal [{:key=>1, :value=>"Mary"}, {:key=>3, :value=>"Paul"}, 
-                                       {:key=>5, :value=>"Peter"}, {:key=>10, :value=>"Karla"}, 
-                                       {:key=>15, :value=>"Ada"}, {:key=>25, :value=>"Kari"}]
+      expect(tree_with_nodes.inorder).must_equal [{ :key => 1, :value => "Mary" }, { :key => 3, :value => "Paul" },
+                                                  { :key => 5, :value => "Peter" }, { :key => 10, :value => "Karla" },
+                                                  { :key => 15, :value => "Ada" }, { :key => 25, :value => "Kari" }]
     end
   end
-
 
   describe "preorder" do
     it "will give an empty array for an empty tree" do
@@ -51,9 +48,9 @@ describe Tree do
     end
 
     it "will return the tree in preorder" do
-      expect(tree_with_nodes.preorder).must_equal [{:key=>5, :value=>"Peter"}, {:key=>3, :value=>"Paul"}, 
-                                        {:key=>1, :value=>"Mary"}, {:key=>10, :value=>"Karla"}, 
-                                        {:key=>15, :value=>"Ada"}, {:key=>25, :value=>"Kari"}]
+      expect(tree_with_nodes.preorder).must_equal [{ :key => 5, :value => "Peter" }, { :key => 3, :value => "Paul" },
+                                                   { :key => 1, :value => "Mary" }, { :key => 10, :value => "Karla" },
+                                                   { :key => 15, :value => "Ada" }, { :key => 25, :value => "Kari" }]
     end
   end
 
@@ -63,9 +60,18 @@ describe Tree do
     end
 
     it "will return the tree in postorder" do
-      expect(tree_with_nodes.postorder).must_equal [{:key=>1, :value=>"Mary"}, {:key=>3, :value=>"Paul"}, 
-                                         {:key=>25, :value=>"Kari"}, {:key=>15, :value=>"Ada"}, 
-                                         {:key=>10, :value=>"Karla"}, {:key=>5, :value=>"Peter"}]
+      expect(tree_with_nodes.postorder).must_equal [{ :key => 1, :value => "Mary" }, { :key => 3, :value => "Paul" },
+                                                    { :key => 25, :value => "Kari" }, { :key => 15, :value => "Ada" },
+                                                    { :key => 10, :value => "Karla" }, { :key => 5, :value => "Peter" }]
+    end
+  end
+
+  describe "height" do
+    it "will return 0 for an empty tree" do
+      expect(tree.height).must_equal 0
+    end
+    it "will return the height of the tree" do
+      expect(tree_with_nodes.height).must_equal 4
     end
   end
   
@@ -81,13 +87,15 @@ describe Tree do
 
   describe "breadth first search" do
     it "will give an empty array for an empty tree" do
+      skip
       expect(tree.bfs).must_equal []
     end
 
     it "will return an array of a level-by-level output of the tree" do
-      expect(tree_with_nodes.bfs).must_equal [{:key=>5, :value=>"Peter"}, {:key=>3, :value=>"Paul"}, 
-                                   {:key=>10, :value=>"Karla"}, {:key=>1, :value=>"Mary"}, 
-                                   {:key=>15, :value=>"Ada"}, {:key=>25, :value=>"Kari"}]
+      skip
+      expect(tree_with_nodes.bfs).must_equal [{ :key => 5, :value => "Peter" }, { :key => 3, :value => "Paul" },
+                                              { :key => 10, :value => "Karla" }, { :key => 1, :value => "Mary" },
+                                              { :key => 15, :value => "Ada" }, { :key => 25, :value => "Kari" }]
     end
   end
 end
