@@ -21,36 +21,41 @@ class Tree
   def add(key, value, current = @root)
     new_node = TreeNode.new(key, value)
 
-      if @root == nil
-       @root = new_node
-     end
+    if @root == nil
+      @root = new_node
+    else
+      if key <= current.key
 
-      if new_node.key <= @root.key
-       @root.left = new_node
-     else
-       @root.right = new_node
-     end
-     return
+        if current.left == nil
+          current.left = new_node
+        else
+          add(key, value, current.left)
+        end
+
+      else
+
+        if current.right == nil
+          current.right = new_node
+        else
+          add(key, value, current.right)
+        end
+
+      end
+    end
   end
 
   # Time Complexity:
   # Space Complexity:
   def find(key, current = @root)
-    while (current != nil)
-     if current.key == key
-       return current.value
-     end
-
-      if key < current.key
-        if left.nil?
-          return nil
-        else
-          find(key, current.left)
-      else
-        find(key, current.right)
-     end
-   end
-   return
+    if @root == nil
+      return nil
+    elsif key == current.key
+      return current.value
+    elsif key <= current.key
+      find(key, current.left)
+    else
+      find(key, current.right)
+    end
   end
 
   # Time Complexity: 
@@ -58,18 +63,11 @@ class Tree
   def inorder(current = @root, array = [])
     if current == nil
       return array
-    elsif left
+    else
       inorder(current.left, array)
       array << { key: current.key, value: current.value }
       inorder(current.right, array)
-
-    # if !current
-    #   return array
-    # else
-    #   inorder(current.left, array)
-    #   array << { key: current.key, value: current.value }
-    #   inorder(current.right, array)
-    # end
+    end
   end
 
 
@@ -77,7 +75,7 @@ class Tree
   # Time Complexity: 
   # Space Complexity: 
   def preorder(current = @root, array = [])
-    if current == nil
+    if current  == nil
       return array
     else
       array << { key: current.key, value: current.value }
@@ -101,21 +99,20 @@ class Tree
   # Time Complexity: 
   # Space Complexity: 
   def height(current = @root, array)
-    if current == nil
-      return nil
-    elsif current.left != nil
-        array << { key: current.key, value: current.value }
-      elsif current.right != nil
-        array << { key: current.key, value: current.value }
-      end
-      return array.length + 1
+
   end
 
   # Optional Method
   # Time Complexity: 
   # Space Complexity: 
-  def bfs
-    raise NotImplementedError
+  def bfs(current = @root, array = [])
+    if current == nil
+      return array
+    else
+      bfs(current.left, array)
+      array << { key: current.key, value: current.value }
+      bfs(current.right, array)
+    end
   end
 
   # Useful for printing
