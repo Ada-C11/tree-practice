@@ -16,8 +16,8 @@ class Tree
     @root = nil
   end
 
-  # Time Complexity: 
-  # Space Complexity: 
+  # Time Complexity: O(log(n)) where n is the number of nodes
+  # Space Complexity: O(1)
   def add(key, value)
     new_node = TreeNode.new(key, value)
     if !@root 
@@ -45,8 +45,8 @@ class Tree
   end
 
 
-  # Time Complexity: 
-  # Space Complexity: 
+  # Time Complexity: O(log(n)) where n is the number of nodes
+  # Space Complexity: O(1)
   def find(key)
     return if !@root
     curr = @root
@@ -62,51 +62,51 @@ class Tree
     return false
   end
 
-  # Time Complexity: 
-  # Space Complexity: 
+  # Time Complexity: O(n) where n is the number of nodes
+  # Space Complexity: O(n) ""
   def inorder
     inorder_traversal(@root, [])
   end
 
-  def inorder_traversal(node, node_array)
-    return node_array if !node
-    inorder_traversal(node.left, node_array)
-    visit(node, node_array)
-    inorder_traversal(node.right, node_array)
+  def inorder_traversal(node, node_list)
+    return node_list if !node
+    inorder_traversal(node.left, node_list)
+    visit(node, node_list)
+    inorder_traversal(node.right, node_list)
   end
 
   def visit(node, arr)
     arr.push({key: node.key, value: node.value})
   end
 
-  # Time Complexity: 
-  # Space Complexity: 
+  # Time Complexity: O(n) where n is the number of nodes
+  # Space Complexity: O(n) ""
   def preorder
     preorder_traversal(@root, [])
   end
 
-  def preorder_traversal(node, node_array)
-    return node_array if !node
-    visit(node, node_array)
-    preorder_traversal(node.left, node_array)
-    preorder_traversal(node.right, node_array)
+  def preorder_traversal(node, node_list)
+    return node_list if !node
+    visit(node, node_list)
+    preorder_traversal(node.left, node_list)
+    preorder_traversal(node.right, node_list)
   end
 
-  # Time Complexity: 
-  # Space Complexity: 
+  # Time Complexity: O(n) where n is the number of nodes
+  # Space Complexity: O(n) "" 
   def postorder
     postorder_traversal(@root, [])
   end
 
-  def postorder_traversal(node, node_array)
-    return node_array if !node
-    postorder_traversal(node.left, node_array)
-    postorder_traversal(node.right, node_array)
-    visit(node, node_array)
+  def postorder_traversal(node, node_list)
+    return node_list if !node
+    postorder_traversal(node.left, node_list)
+    postorder_traversal(node.right, node_list)
+    visit(node, node_list)
   end
 
-  # Time Complexity: 
-  # Space Complexity: 
+  # Time Complexity: O(n) where n is the number of nodes
+  # Space Complexity: O(1)
   def height
     longest_tree_path(@root)
   end
@@ -118,11 +118,19 @@ class Tree
     return [right, left].max + 1
   end
 
-  # Optional Method
-  # Time Complexity: 
-  # Space Complexity: 
+  # Time Complexity: O(n) where n is the number of nodes
+  # Space Complexity: O(n) ""
   def bfs
-    raise NotImplementedError
+    bfs_queue = []
+    curr = @root
+    node_list = []
+    while curr
+      visit(curr, node_list)
+      bfs_queue << curr.left if curr.left
+      bfs_queue << curr.right if curr.right
+      curr = bfs_queue.shift
+    end
+    return node_list
   end
 
   # Useful for printing

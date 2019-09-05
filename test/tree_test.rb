@@ -83,15 +83,15 @@ describe Tree do
 
   end
 
-  # describe "breadth first search" do
-  #   it "will give an empty array for an empty tree" do
-  #     expect(tree.bfs).must_equal []
-  #   end
+  describe "breadth first search" do
+    it "will give an empty array for an empty tree" do
+      expect(tree.bfs).must_equal []
+    end
 
-  #   it "will return an array of a level-by-level output of the tree" do
-  #     expect(tree_with_nodes.bfs).must_equal [{:key=>5, :value=>"Peter"}, {:key=>3, :value=>"Paul"}, 
-  #                                  {:key=>10, :value=>"Karla"}, {:key=>1, :value=>"Mary"}, 
-  #                                  {:key=>15, :value=>"Ada"}, {:key=>25, :value=>"Kari"}]
-  #   end
-  # end
+    it "will return an array of a level-by-level output of the tree" do
+      expect(tree_with_nodes.bfs).must_equal [{:key=>5, :value=>"Peter"}, {:key=>3, :value=>"Paul"}, 
+                                   {:key=>10, :value=>"Karla"}, {:key=>1, :value=>"Mary"}, 
+                                   {:key=>15, :value=>"Ada"}, {:key=>25, :value=>"Kari"}]
+    end
+  end
 end
