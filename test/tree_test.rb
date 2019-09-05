@@ -69,7 +69,7 @@ describe Tree do
     end
   end
 
-  xdescribe "breadth first search" do
+  describe "breadth first search" do
     it "will give an empty array for an empty tree" do
       expect(tree.bfs).must_equal []
     end

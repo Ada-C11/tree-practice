@@ -106,7 +106,7 @@ class Tree
   def postorder
     array = []
     root_node = @root
-    postorder = bst_postorder(root_node, array)
+    postorder_arr = bst_postorder(root_node, array)
   end
 
   def bst_postorder(node, arr)
@@ -120,14 +120,33 @@ class Tree
   # Time Complexity: 
   # Space Complexity: 
   def height
-    raise NotImplementedError
+    
   end
 
   # Optional Method
   # Time Complexity: 
   # Space Complexity: 
   def bfs
-    raise NotImplementedError
+    node = @root
+    array = []
+    bfs_arr = breadth_first(node, array)
+  end
+
+  def breadth_first(node, arr)
+    current = node
+    levels_list = []
+    i = 0
+
+    return arr if node.nil?
+    # add level by level
+    while i <= levels_list.length
+      arr << {:key => current.key, :value => current.value} 
+      levels_list << current.left if current.left
+      levels_list << current.right if current.right
+      current = levels_list[i]
+      i+= 1
+    end
+    return arr
   end
 
   # Useful for printing
