@@ -106,7 +106,7 @@ class Tree
   end
 
   # Time Complexity: O(n) where n is the number of nodes
-  # Space Complexity: O(1)
+  # Space Complexity: O(n)
   def height
     longest_tree_path(@root)
   end
