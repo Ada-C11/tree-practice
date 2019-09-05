@@ -18,13 +18,12 @@ describe Tree do
 
   it "add & find values" do
     tree.add(5, "Peter")
-    expect(tree.find(5)).must_equal "Peter"
-
-    tree.add(15, "Ada")
-    expect(tree.find(15)).must_equal "Ada"
-
     tree.add(3, "Paul")
+    tree.add(15, "Ada")
+    expect(tree.find(5)).must_equal "Peter"
     expect(tree.find(3)).must_equal "Paul"
+    expect(tree.find(15)).must_equal "Ada"
+    
   end
 
   it "can't find anything when the tree is empty" do
@@ -77,6 +76,21 @@ describe Tree do
     it "returns correct height of tree" do
       expect(tree_with_nodes.height).must_equal 4
     end
+  end
+
+  describe "hieght" do 
+    it "will return 0 if tree is empty" do 
+      expect(tree.height()).must_equal 0
+    end
+
+    it "will return the nuber of nodes in the longest path" do
+      expect(tree_with_nodes.height).must_equal 4
+      tree_with_nodes.add(60, "sam")
+      tree_with_nodes.add(58, "penny")
+      tree_with_nodes.add(65, "sam")
+      expect(tree_with_nodes.height).must_equal 6
+    end
+
   end
 
   describe "breadth first search" do
