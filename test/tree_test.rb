@@ -31,7 +31,7 @@ describe Tree do
     expect(tree.find(50)).must_be_nil
   end
 
-  xdescribe "inorder" do
+  describe "inorder" do
     it "will give an empty array for an empty tree" do
       expect(tree.inorder).must_equal []
     end

@@ -19,19 +19,33 @@ class Tree
   # Time Complexity: O(log n) - traverse only half of dataset
   # Space Complexity: O - just adding a node
   def add(key, value)
+    if key.nil? || value.nil?
+      return nil
+    end
+
     if @root.nil?
-      new_tree_node = TreeNode.new(key, value)
-      @root = new_tree_node
+      @root = TreeNode.new(key, value)
       return
     end
 
-      current_node = @root
-      add_node = TreeNode.new(key, value)
-      if add_node.key <= current_node.key
-        current_node.left = add_node
-      else
-        current_node.right = add_node
+    insert_node = TreeNode.new(key, value)
+    current_root = @root
+
+    while !current_root.nil?
+      trailing_node = current_root
+
+      if key <= current_root.key
+        current_root = current_root.left
+      else 
+        current_root = current_root.right
       end
+    end
+
+    if key <= trailing_node.key
+      trailing_node.left = insert_node
+    else
+      trailing_node.right = insert_node
+    end
   end
 
   # Time Complexity: 
@@ -58,8 +72,19 @@ class Tree
   # Time Complexity: 
   # Space Complexity: 
   def inorder
-    raise NotImplementedError
+    root_node = @root
+    array = []
+    inorder_array = bst_inorder(root_node, array)
   end
+
+  def bst_inorder(node, arr)
+    return arr if !node
+    bst_inorder(node.left, arr)
+    arr << {:key => node.key, :value => node.value}
+    bst_inorder(node.right, arr)
+  end
+
+
 
   # Time Complexity: 
   # Space Complexity: 
