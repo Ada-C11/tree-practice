@@ -89,13 +89,32 @@ class Tree
   # Time Complexity: 
   # Space Complexity: 
   def preorder
-    raise NotImplementedError
+    array = []
+    root_node = @root
+    preorder_arr = bst_preorder(root_node, array)
+  end
+
+  def bst_preorder(node, arr)
+    return arr if !node
+    arr << {:key => node.key, :value => node.value}
+    bst_preorder(node.left, arr)
+    bst_preorder(node.right, arr)
   end
 
   # Time Complexity: 
   # Space Complexity: 
   def postorder
-    raise NotImplementedError
+    array = []
+    root_node = @root
+    postorder = bst_postorder(root_node, array)
+  end
+
+  def bst_postorder(node, arr)
+    return arr if !node
+    bst_postorder(node.left, arr)
+    bst_postorder(node.right, arr)
+    arr << {:key => node.key, :value => node.value}
+    
   end
 
   # Time Complexity: 
