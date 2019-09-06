@@ -117,7 +117,7 @@ class Tree
   end
 
   # Time Complexity: O(n) because you have to check each node/subtree in the tree to determine height
-  # Space Complexity: 
+  # Space Complexity: O(logn) unless unbalanced, then O(n)
   def height
     current = @root
     return 0 if @root.nil?
