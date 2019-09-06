@@ -90,6 +90,11 @@ describe Tree do
       expect(tree_with_nodes.height).must_equal 4
     end
 
+    it "will give the correct height of a binary search tree" do
+      tree_with_nodes.add(30, "Tatiana")
+      expect(tree_with_nodes.height).must_equal 5
+    end
+
   end
 
 end

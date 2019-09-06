@@ -122,9 +122,8 @@ class Tree
     current = @root
     return 0 if @root.nil?
 
-    h =  tree_height(current)
-    puts h
-    return h
+    return tree_height(current)
+  
   end
 
   def tree_height(node)
