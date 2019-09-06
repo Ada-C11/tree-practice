@@ -16,8 +16,9 @@ class Tree
     @root = nil
   end
 
-  # Time Complexity: 
-  # Space Complexity: 
+  # Time Complexity: O(h), where h is the maximum height of the binary tree. 
+  # In a balanced tree, this would be O(log n)
+  # Space Complexity: O(1), the method will always create one(1) new node
   def add(key, value)
     new_node = TreeNode.new(key, value)
     if !@root
@@ -44,8 +45,9 @@ class Tree
     end
   end
 
-  # Time Complexity: 
-  # Space Complexity: 
+  # Time Complexity: O(h), where h is the maximum height of the binary tree. 
+  # In a balanced tree, this would be O(log n)
+  # Space Complexity: O(1), no new nodes are created
   def find(key)
     current = @root
     while current
@@ -60,8 +62,8 @@ class Tree
     return
   end
 
-  # Time Complexity: 
-  # Space Complexity: 
+  # Time Complexity: O(n) where n is the number of nodes
+  # Space Complexity: O(n) where n is the number of nodes
   def inorder
     nodes = []
     if @root
@@ -76,8 +78,9 @@ class Tree
     array << { key: node.key, value: node.value }
     add_nodes_inorder(node.right, array)
   end
-  # Time Complexity: 
-  # Space Complexity: 
+
+  # Time Complexity: O(n) where n is the number of nodes
+  # Space Complexity: O(n) where n is the number of nodes
   def preorder
     nodes = []
     if @root
@@ -93,8 +96,8 @@ class Tree
     add_nodes_preorder(node.right, array)   
   end
 
-  # Time Complexity: 
-  # Space Complexity: 
+  # Time Complexity: O(n) where n is the number of nodes
+  # Space Complexity: O(n) where n is the number of nodes
   def postorder
     nodes = []
     if @root
@@ -110,8 +113,8 @@ class Tree
     array << { key: node.key, value: node.value }
   end
 
-  # Time Complexity: 
-  # Space Complexity: 
+  # Time Complexity: O(n) where n is the number of nodes
+  # Space Complexity: O(n) where n is the number of nodes
   def height
     return max_depth(@root)
   end
@@ -123,8 +126,8 @@ class Tree
     return [right, left].max + 1
   end
   # Optional Method
-  # Time Complexity: 
-  # Space Complexity: 
+  # Time Complexity: O(n) where n is the number of nodes
+  # Space Complexity: O(n) where n is the number of nodes
   def bfs
     return [] if !@root
     queue = []
