@@ -16,8 +16,8 @@ class Tree
     @root = nil
   end
 
-  # Time Complexity: O(log n) - traverse only half of dataset
-  # Space Complexity: O - just adding a node
+  # Time Complexity: O(log n) - omit half of dataset to add a value if tree is balanced
+  # Space Complexity: O(1) to insert a node
   def add(key, value)
     if key.nil? || value.nil?
       return nil
@@ -48,8 +48,8 @@ class Tree
     end
   end
 
-  # Time Complexity: 
-  # Space Complexity: 
+  # Time Complexity: Ologn - omit half of dataset (if balanced) to find a value
+  # Space Complexity: O(1) Constant
   def find(key)
     #begin with root node, returns value
     return unless !@root.nil?
@@ -69,12 +69,12 @@ class Tree
     return nil
   end
 
-  # Time Complexity: 
-  # Space Complexity: 
+  # Time Complexity: O(n) because we visit each node once
+  # Space Complexity: O(h) where h is equal to height of tree unless tree is imbalanced, then O(n)
   def inorder
     root_node = @root
     array = []
-    inorder_array = bst_inorder(root_node, array)
+    return bst_inorder(root_node, array)
   end
 
   def bst_inorder(node, arr)
@@ -86,12 +86,12 @@ class Tree
 
 
 
-  # Time Complexity: 
-  # Space Complexity: 
+  # Time Complexity: O(n) because we visit each node once
+  # Space Complexity: O(h) where h is equal to height of tree unless tree is imbalanced, then O(n)
   def preorder
     array = []
     root_node = @root
-    preorder_arr = bst_preorder(root_node, array)
+    return bst_preorder(root_node, array)
   end
 
   def bst_preorder(node, arr)
@@ -101,12 +101,12 @@ class Tree
     bst_preorder(node.right, arr)
   end
 
-  # Time Complexity: 
-  # Space Complexity: 
+  # Time Complexity: O(n) because we visit each node once
+  # Space Complexity: O(h) where h is equal to height of tree unless tree is imbalanced, then O(n)
   def postorder
     array = []
     root_node = @root
-    postorder_arr = bst_postorder(root_node, array)
+    return bst_postorder(root_node, array)
   end
 
   def bst_postorder(node, arr)
@@ -114,22 +114,40 @@ class Tree
     bst_postorder(node.left, arr)
     bst_postorder(node.right, arr)
     arr << {:key => node.key, :value => node.value}
-    
   end
 
-  # Time Complexity: 
+  # Time Complexity: O(n) because you have to check each node/subtree in the tree to determine height
   # Space Complexity: 
   def height
-    
+    current = @root
+    return 0 if @root.nil?
+
+    h =  tree_height(current)
+    puts h
+    return h
+  end
+
+  def tree_height(node)
+    #find the height of the largest subtree + root node
+    height_left = 0
+    height_right = 0
+
+    if node == nil
+      return 0
+    else
+      height_left = tree_height(node.left) if node.left
+      height_right = tree_height(node.right) if node.right
+      height_left > height_right ? 1 + height_left : 1 + height_right
+    end
   end
 
   # Optional Method
-  # Time Complexity: 
-  # Space Complexity: 
+  # Time Complexity: O(n) because we visit every node
+  # Space Complexity: O(n) because I am storing all bfs nodes in an array
   def bfs
     node = @root
     array = []
-    bfs_arr = breadth_first(node, array)
+    return breadth_first(node, array)
   end
 
   def breadth_first(node, arr)
@@ -151,6 +169,6 @@ class Tree
 
   # Useful for printing
   def to_s
-    return "#{self.inorder}"
+    puts "#{self.inorder}"
   end
 end

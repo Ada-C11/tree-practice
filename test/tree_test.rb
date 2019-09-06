@@ -80,4 +80,16 @@ describe Tree do
                                    {:key=>15, :value=>"Ada"}, {:key=>25, :value=>"Kari"}]
     end
   end
+
+  describe "bst height" do 
+    it "will return 0 if the root node is nil" do 
+      expect(tree.height).must_equal 0
+    end
+
+    it "will give the correct height of a binary search tree" do
+      expect(tree_with_nodes.height).must_equal 4
+    end
+
+  end
+
 end
