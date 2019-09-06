@@ -79,6 +79,16 @@ describe Tree do
     end
   end
 
+  describe "height" do
+    it "will return 0 for an empty tree" do
+      expect(tree.height).must_equal 0
+    end
+
+    it "will return the number of edges from the root to the deepest leaf" do
+      expect(tree_with_nodes.height).must_equal 4
+    end
+  end
+
   describe "breadth first search" do
     it "will give an empty array for an empty tree" do
       expect(tree.bfs).must_equal []
