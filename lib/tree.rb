@@ -7,6 +7,7 @@ class TreeNode
     @value = val
     @left = nil
     @right = nil
+    @parent = nil
    end
 end
 
@@ -22,23 +23,56 @@ class Tree
     raise NotImplementedError
   end
 
-  # Time Complexity: 
-  # Space Complexity: 
+  # Time Complexity: O(n) / O(logn)
+  # Space Complexity: O(1)
   def find(key)
-    raise NotImplementedError
+    return find_helper(key, @root)
   end
 
-  # Time Complexity: 
-  # Space Complexity: 
+  def find_helper(key, node)
+    return nil unless node
+    if key == node.key
+        return node.value
+    elsif key < node.key
+        find_helper(key, node.left)
+    else key > node.key
+        find_helper(key, node.right)
+    end 
+  end 
+
+  # Time Complexity: O(n)
+  # Space Complexity: O(n)
   def inorder
-    raise NotImplementedError
+    array = []
+    inorder_helper(array, @root)
   end
 
-  # Time Complexity: 
-  # Space Complexity: 
+  def inorder_helper (array, node)
+    return array unless node
+      inorder_helper(array, node.left)
+      node_kv = {}
+      node_kv[:key] = node.key
+      node_kv[:value] = node.value
+      array.push(node_kv)
+      inorder_heper(array, node.right)
+  end 
+
+  # Time Complexity: O(n)
+  # Space Complexity: O(n)
   def preorder
-    raise NotImplementedError
+    array = []
+    return preorder(array, @root)
   end
+
+  def preorder_helper (array, node)
+    return array unless node 
+    node_kv = {}
+    node_kv[:key] = node.key
+    node_kv[:value] = node.value
+    array.push(node_kv)
+    preorder_helper(array, node.left)
+    preorder_heper(array, node.right)
+  end 
 
   # Time Complexity: 
   # Space Complexity: 
