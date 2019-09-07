@@ -1,5 +1,3 @@
-require "pry"
-
 class TreeNode
   attr_reader :key, :value
   attr_accessor :left, :right
