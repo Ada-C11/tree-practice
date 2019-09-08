@@ -78,10 +78,12 @@ class Tree
   end
 
   def bst_inorder(node, arr)
-    return arr if !node
-    bst_inorder(node.left, arr)
-    arr << {:key => node.key, :value => node.value}
-    bst_inorder(node.right, arr)
+    if node
+      bst_inorder(node.left, arr) if node.left
+      arr << {:key => node.key, :value => node.value}
+      bst_inorder(node.right, arr) if node.right
+    end
+    return arr
   end
 
 
@@ -95,10 +97,13 @@ class Tree
   end
 
   def bst_preorder(node, arr)
-    return arr if !node
-    arr << {:key => node.key, :value => node.value}
-    bst_preorder(node.left, arr)
-    bst_preorder(node.right, arr)
+    if !node
+      arr << {:key => node.key, :value => node.value}
+      bst_preorder(node.left, arr) if node.left
+      bst_preorder(node.right, arr) if node.right
+    end
+
+    return arr
   end
 
   # Time Complexity: O(n) because we visit each node once
@@ -110,10 +115,12 @@ class Tree
   end
 
   def bst_postorder(node, arr)
-    return arr if !node
-    bst_postorder(node.left, arr)
-    bst_postorder(node.right, arr)
-    arr << {:key => node.key, :value => node.value}
+    if node
+      bst_postorder(node.left, arr) if node.left
+      bst_postorder(node.right, arr) if node.right
+      arr << {:key => node.key, :value => node.value}
+    end
+    return arr 
   end
 
   # Time Complexity: O(n) because you have to check each node/subtree in the tree to determine height
