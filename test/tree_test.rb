@@ -1,5 +1,7 @@
 require_relative 'test_helper'
-
+require 'minitest/autorun'
+require 'minitest/reporters'
+require 'minitest/skip_dsl'
 
 Minitest::Reporters.use! Minitest::Reporters::SpecReporter.new
 
@@ -79,7 +81,7 @@ describe Tree do
     end
   end
 
-  describe "breadth first search" do
+  xdescribe "breadth first search" do
     it "will give an empty array for an empty tree" do
       expect(tree.bfs).must_equal []
     end
