@@ -57,7 +57,7 @@ class Tree
     @root = nil
   end
 
-  # Time Complexity: O(logn) if it is balanced, O(n) if it is not
+  # Time Complexity: O(log n) if it is balanced, O(n) if it is not
   # Space Complexity: Constant
   def add(key, value)
     new_node = TreeNode.new(key, value)
@@ -82,7 +82,7 @@ class Tree
     return current
   end
 
-  # Time Complexity: O(logn) if it is balanced, O(n) if it is not balanced
+  # Time Complexity: O(log n) if it is balanced, O(n) if it is not balanced
   # Space Complexity: constant
   def find(key)
     current = @root
@@ -102,8 +102,8 @@ class Tree
     end
   end
 
-  # Time Complexity: O(n) - need to visit each node in the tree
-  # Space Complexity:
+  # Time Complexity: O(n)
+  # Space Complexity:O(log n)
   def inorder
     list = []
     if @root != nil
@@ -112,8 +112,8 @@ class Tree
     return list
   end
 
-  # Time Complexity:
-  # Space Complexity:
+  # Time Complexity:O(n)
+  # Space Complexity:O(log n)
   def preorder
     #Root, Left, Right
     list = []
@@ -126,8 +126,8 @@ class Tree
     return list
   end
 
-  # Time Complexity:
-  # Space Complexity:
+  # Time Complexity: O(n)
+  # Space Complexity:O(log n)
   def postorder
     #left, right, root
     list = []
@@ -139,8 +139,8 @@ class Tree
     end
   end
 
-  # Time Complexity:
-  # Space Complexity:
+  # Time Complexity:O(n)
+  # Space Complexity:O(n)
   def height(current = @root)
     return 0 if current == nil
     heightLeft = 0
