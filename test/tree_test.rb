@@ -9,7 +9,7 @@ describe Tree do
   let (:tree_with_nodes) {
     tree.add(5, "Peter")
     tree.add(3, "Paul")
-    tree.add(1, "Mary")
+    tree.add(1, "Mary") 
     tree.add(10, "Karla")
     tree.add(15, "Ada")
     tree.add(25, "Kari")
@@ -39,7 +39,7 @@ describe Tree do
     it "will return the tree in order" do
 
       expect(tree_with_nodes.inorder).must_equal [{:key=>1, :value=>"Mary"}, {:key=>3, :value=>"Paul"}, 
-                                       {:key=>5, :value=>"Peter"}, {:key=>10, :value=>"Karla"}, 
+                                           {:key=>5, :value=>"Peter"}, {:key=>10, :value=>"Karla"}, 
                                        {:key=>15, :value=>"Ada"}, {:key=>25, :value=>"Kari"}]
     end
   end
