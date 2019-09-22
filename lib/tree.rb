@@ -43,8 +43,8 @@ class Tree
     end
   end
 
-  # Time Complexity: 
-  # Space Complexity: 
+  # Time Complexity: O(log n) - side eliminated
+  # Space Complexity: O(1)
   def find(key)
     return nil if !@root
 
@@ -62,60 +62,58 @@ class Tree
     return nil
   end
 
-  # Time Complexity: 
-  # Space Complexity: 
+  # Time Complexity: O(n) - all nodes visited
+  # Space Complexity: O(n) - array size based on node amount
   def inorder
-    return [] if !@head
+    return [] if !@root
     values = []
-    return inorder_key(@head, values)
+    inorder_key(@root, values)
   end
 
   def inorder_key(current_node, array)
     if !current_node
       return array
     else
-      inorder_key(current_node.left)
-      varray << {key: current_node.key, value: current_node.value}
-      inorder_key(current_node.right)
+      inorder_key(current_node.left, array)
+      array << {key: current_node.key, value: current_node.value}
+      inorder_key(current_node.right, array)
     end
-    return
   end
 
-  # Time Complexity: 
-  # Space Complexity: 
+  # Time Complexity: O(n) - all nodes visited
+  # Space Complexity: O(n) - array size based on node amount
   def preorder
-    return [] if @head == nil
-    return preorder_key(@head)
+    return [] if !@root
+    values = []
+    preorder_key(@root, values)
   end
 
-  def preorder_key(current_node)
-    values = []
+  def preorder_key(current_node, array)
     if !current_node
-      return values
+      return array
     else
-      values << {key: current.key, value: current.value}
-      preorder_key(current_node.left)
-      preorder_key(current_node.right)
+      array << {key: current_node.key, value: current_node.value}
+      preorder_key(current_node.left, array)
+      preorder_key(current_node.right, array)
     end
   end
 
-  # Time Complexity: 
-  # Space Complexity: 
+  # Time Complexity: O(n) - all nodes visited
+  # Space Complexity: O(n) - array size based on node amount
   def postorder
-    return [] if @head == nil
-    postorder_key(@head)
+    return [] if !@root
+    values = []
+    postorder_key(@root, values)
   end
 
-  def postorder_key(current_node)
-    values = []
+  def postorder_key(current_node, array)
     if !current_node
-      return values
+      return array
     else
-      postorder_key(current_node.left)
-      postorder_key(current_node.right)
-      values << {key: current_node.key, value: current_node.value}
+      postorder_key(current_node.left, array)
+      postorder_key(current_node.right, array)
+      array << {key: current_node.key, value: current_node.value}
     end
-    return values
   end
 
   # Time Complexity: 
