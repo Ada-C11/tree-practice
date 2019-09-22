@@ -16,30 +16,29 @@ class Tree
     @root = nil
   end
 
-  # Time Complexity: 
-  # Space Complexity: 
+  # Time Complexity: O(log n) - side eliminated
+  # Space Complexity: O(1)
   def add(key, value)
     new_node = TreeNode.new(key, value)
+
     if !@root
       @root = new_node
     else
-      add_value(@root, new_node)
-    end
-  end
-
-  # TODO: Refactor solution with loop
-  def add_value(current, new_node)
-    if current.key < new_node.key
-      if current.right
-        add_value(current.right, new_node)
-      else
-        current.right = new_node
-      end
-    else
-      if current.left
-        add_value(current.left, new_node)
-      else
-        current.left = new_node
+      current = @root
+      until !current
+        if current.key < new_node.key
+          if current.right
+            current = current.right
+          else
+            return current.right = new_node
+          end
+        else
+          if current.left
+            current = current.left
+          else
+            return current.left = new_node
+          end
+        end
       end
     end
   end
@@ -51,7 +50,7 @@ class Tree
 
     current = @root
 
-    while current
+    until !current
       return current.value if current.key == key
       
       if current.key < key
