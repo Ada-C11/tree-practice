@@ -116,10 +116,23 @@ class Tree
     end
   end
 
-  # Time Complexity: 
-  # Space Complexity: 
+  # Time Complexity: O(n) - possible to visit each node
+  # Space Complexity: O(1)
   def height
-    raise NotImplementedError
+    return 0 if !@root
+    height_helper(@root)
+  end
+
+  def height_helper(current)
+    return 0 if !current
+    left = height_helper(current.left)
+    right = height_helper(current.right)
+
+    if left < right
+      return right + 1
+    else
+      return left + 1
+    end
   end
 
   # Optional Method
