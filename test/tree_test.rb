@@ -32,6 +32,7 @@ describe Tree do
   end
 
   describe "inorder" do
+
     it "will give an empty array for an empty tree" do
       expect(tree.inorder).must_equal []
     end
@@ -44,8 +45,8 @@ describe Tree do
     end
   end
 
-
   describe "preorder" do
+
     it "will give an empty array for an empty tree" do
       expect(tree.preorder).must_equal []
     end
@@ -75,6 +76,16 @@ describe Tree do
     end
 
     it "returns correct height of tree" do
+      expect(tree_with_nodes.height).must_equal 4
+    end
+  end
+
+  describe "height" do
+    it "will give height of 0 if empty tree" do
+      expect(tree.height).must_equal 0
+    end
+
+    it "will return height value for non-empty tree" do
       expect(tree_with_nodes.height).must_equal 4
     end
   end
