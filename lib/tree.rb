@@ -136,10 +136,31 @@ class Tree
   end
 
   # Optional Method
-  # Time Complexity: 
-  # Space Complexity: 
+  # Time Complexity: O(n) - all nodes visited
+  # Space Complexity: O(n) - array size based on size of tree
   def bfs
-    raise NotImplementedError
+    return [] if !@root
+
+    values = [{key: @root.key, value: @root.value}]
+    bfs_helper(@root, values)
+  end
+
+  def bfs_helper(current, array)
+      if current.left
+        array << {key: current.left.key, value: current.left.value}
+      end
+      if current.right
+        array << {key: current.right.key, value: current.right.value}
+      end
+      if !current.left && !current.right
+        return array
+      end
+      if current.left
+        bfs_helper(current.left, array)
+      end
+      if current.right
+        bfs_helper(current.right, array)
+      end
   end
 
   # Useful for printing
