@@ -16,42 +16,100 @@ class Tree
     @root = nil
   end
 
-  # Time Complexity: 
-  # Space Complexity: 
+  # Time Complexity: O(log n) 
+  # Space Complexity: O(1)
   def add(key, value)
-    raise NotImplementedError
+    new_node = TreeNode.new(key, value)
+
+    if @root ==  nil
+      @root = new_node
+    else
+      add_node(@root, new_node)
+    end
   end
 
-  # Time Complexity: 
-  # Space Complexity: 
+  def add_node(root, new_node)
+    if new_node.key < root.key
+      return root.left = new_node unless root.left
+      add_node(root.left, new_node)
+    elsif new_node.key > root.key
+      return root.right = new_node unless root.right
+      add_node(root.right, new_node)
+    end
+  end
+
+  # Time Complexity: O(n)
+  # Space Complexity: O(1)
   def find(key)
-    raise NotImplementedError
+    return nil if @root == nil
+
+    current = @root
+
+    until current == nil
+      if key == current.key
+        return current.value
+      elsif key < current.key
+        current = current.left
+      else
+        current = current.right
+      end
+    end
+
+    return nil
   end
 
-  # Time Complexity: 
-  # Space Complexity: 
+  # Time Complexity: O(n)
+  # Space Complexity: O(n)
   def inorder
-    raise NotImplementedError
+    return [] if @root == nil
+
+    current = @root 
+    tree = []
+      
+    return inorder_helper(current, tree)
   end
 
-  # Time Complexity: 
-  # Space Complexity: 
+  # Time Complexity: O(n)
+  # Space Complexity: O(n)
   def preorder
-    raise NotImplementedError
+    return [] if @root == nil
+
+    current = @root 
+    tree = []
+      
+    return preorder_helper(current, tree)
   end
 
-  # Time Complexity: 
-  # Space Complexity: 
+  # Time Complexity: O(n)
+  # Space Complexity: O(n)
   def postorder
-    raise NotImplementedError
+    return [] if @root == nil
+
+    current = @root 
+    array = []
+      
+    return postorder_helper(current, array)
   end
 
-  # Time Complexity: 
-  # Space Complexity: 
+  # Time Complexity: O(n)
+  # Space Complexity: O(1)
   def height
-    raise NotImplementedError
+    return 0 if @root == nil
+
+    current = @root
+
+    return height_helper(current, 1, 1)
   end
 
+  def height_helper(node)
+    return 0 unless node
+    left_counter = height_helper(node.left)
+    right_counter = height_helper(node.right)
+    counter = left_counter > right_counter ? left_counter : right_counter
+    return counter += 1
+  end
+
+  
   # Optional Method
   # Time Complexity: 
   # Space Complexity: 
